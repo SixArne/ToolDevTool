@@ -1,9 +1,14 @@
 #include "MainComponent.h"
+#include "src/OBJParser.h"
 
 //==============================================================================
 MainComponent::MainComponent()
+    :m_Parser{ Util::OBJParser{ "test" } }
 {
     setSize (600, 400);
+
+	
+    m_Parser.ReadTextOBJFile();
 }
 
 MainComponent::~MainComponent()
@@ -18,7 +23,7 @@ void MainComponent::paint (juce::Graphics& g)
 
     g.setFont (juce::Font (16.0f));
     g.setColour (juce::Colours::white);
-    g.drawText ("Hello World!", getLocalBounds(), juce::Justification::centred, true);
+    g.drawText (m_Parser.Test().c_str(), getLocalBounds(), juce::Justification::centred, true);
 }
 
 void MainComponent::resized()

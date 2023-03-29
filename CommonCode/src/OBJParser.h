@@ -52,6 +52,8 @@ namespace Util
 		void WriteToBinary(const std::string& filename);
 		void WriteToText(const std::string& filename);
 
+		std::string Test() { return "test"; };
+
 	private:
 		void ParseVerticesLine(std::string& line, size_t charPositionToPrune);
 		void ParseNormalsLine(std::string& line, size_t charPositionToPrune);
