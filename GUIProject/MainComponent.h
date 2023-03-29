@@ -26,5 +26,10 @@ private:
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainComponent)
 
+    void SelectFile();
+
+    juce::TextButton m_TxtButton{};
+
     Util::OBJParser m_Parser;
+    std::unique_ptr<FileChooser> m_FileChooser{};
 };
