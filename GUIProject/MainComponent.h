@@ -3,6 +3,8 @@
 #include <JuceHeader.h>
 #include "src/OBJParser.h"
 
+#include <functional>
+
 
 //==============================================================================
 /*
@@ -26,9 +28,12 @@ private:
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainComponent)
 
-    void SelectFile();
+    void SelectFile(bool isReversed);
+    void ConvertASCIIToBinary(File& file);
+    void ConvertBinaryToASCII(File& file);
 
-    juce::TextButton m_TxtButton{};
+	juce::TextButton m_ASCIIToBinaryBtn{};
+	juce::TextButton m_BinaryToASCIIBtn{};
 
     Util::OBJParser m_Parser;
     std::unique_ptr<FileChooser> m_FileChooser{};

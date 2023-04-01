@@ -16,15 +16,14 @@ void L_ERROR(const std::string& value)
 }
 
 
-Util::OBJParser::OBJParser(const std::string& filenameWithoutExtension)
-	:m_Filename{ filenameWithoutExtension }
+Util::OBJParser::OBJParser()
 {
 }
 
-void Util::OBJParser::ReadTextOBJFile()
+void Util::OBJParser::ReadTextOBJFile(const std::string& filenamePath)
 {
 	std::ifstream input{};
-	std::string filename{ m_Filename + ".obj" };
+	std::string filename{ filenamePath };
 
 	if (input.open(filename.c_str()); input.is_open())
 	{
@@ -33,6 +32,11 @@ void Util::OBJParser::ReadTextOBJFile()
 		std::string line{};
 		while (std::getline(input, line))
 		{
+			// ignore comments
+			if (auto vFound = line.find("#"); vFound != std::string::npos)
+			{
+				continue;
+			}
 
 			if (auto vFound = line.find("v"); vFound != std::string::npos)
 			{
@@ -59,10 +63,10 @@ void Util::OBJParser::ReadTextOBJFile()
 	}
 }
 
-void Util::OBJParser::ReadBinaryOBJFile()
+void Util::OBJParser::ReadBinaryOBJFile(const std::string& filenamePath)
 {
 	std::ifstream input{};
-	std::string filename{ m_Filename + ".bobj" };
+	std::string filename{ filenamePath };
 
 	if (input.open(filename.c_str(), std::ios::binary); input.is_open())
 	{

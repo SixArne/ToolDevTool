@@ -45,10 +45,10 @@ namespace Util
 	class OBJParser
 	{
 	public:
-		OBJParser(const std::string& filenameWithoutExtension);
+		OBJParser();
 
-		void ReadTextOBJFile();
-		void ReadBinaryOBJFile();
+		void ReadTextOBJFile(const std::string& filenamePath);
+		void ReadBinaryOBJFile(const std::string& filenamePath);
 		void WriteToBinary(const std::string& filename);
 		void WriteToText(const std::string& filename);
 
